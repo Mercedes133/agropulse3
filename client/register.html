@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign Up - AgroPulse</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <div class="page page-center">
+      <main class="auth-wrap">
+        <div class="auth-card">
+          <div class="auth-logo" aria-hidden="true">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 2C8 6 7 10 7 13C7 17 10 22 12 22C14 22 17 17 17 13C17 10 16 6 12 2Z"
+                fill="currentColor"
+                opacity="0.9"
+              />
+              <path
+                d="M8 14C10 12 12 11 16 10"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+
+          <h1 class="auth-title">Create Account</h1>
+          <p class="auth-subtitle">Sign up to manage your investments</p>
+
+          <form id="registerForm" class="form-grid" novalidate>
+            <div class="field">
+              <label class="field-label">Username</label>
+              <input class="input" name="username" type="text" minlength="3" maxlength="30" autocomplete="username" required />
+            </div>
+
+            <div class="field">
+              <label class="field-label">Email Address</label>
+              <input class="input" name="email" type="email" autocomplete="email" required />
+            </div>
+
+            <div class="field">
+              <label class="field-label">Password</label>
+              <div class="input-with-icon">
+                <input class="input input-icon" id="registerPassword" name="password" type="password" autocomplete="new-password" required minlength="6" />
+                <button class="icon-btn" type="button" data-toggle="#registerPassword" aria-label="Show/Hide password">
+                  👁
+                </button>
+              </div>
+            </div>
+
+            <div class="recaptcha" role="group" aria-label="reCAPTCHA placeholder">
+              <label class="recaptcha-row">
+                <input type="checkbox" id="recaptchaCheck" />
+                <span>I'm not a robot</span>
+              </label>
+              <div class="recaptcha-brand" aria-hidden="true">
+                <div class="recaptcha-logo">reCAPTCHA</div>
+                <div class="recaptcha-small">Privacy - Terms</div>
+              </div>
+            </div>
+
+            <button class="btn btn-primary btn-full" type="submit">Sign Up</button>
+
+            <p class="footnote">
+              Already have an account?
+              <a class="link" href="login.html">Log In</a>
+            </p>
+
+            <div id="registerError" class="alert alert-error" hidden></div>
+          </form>
+        </div>
+      </main>
+    </div>
+
+    <script src="assets/auth.js"></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        setupPasswordToggles();
+        setupRegister();
+      });
+    </script>
+  </body>
+</html>
+

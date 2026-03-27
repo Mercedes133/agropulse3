@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Manual Payment - AgroPulse</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="top-brand">
+        <div class="brand-title">Manual Payment (MTN MoMo)</div>
+        <div class="spacer"></div>
+        <a class="btn btn-ghost" href="dashboard.html">Back</a>
+      </header>
+
+      <main class="content">
+        <section class="card">
+          <h2 class="card-h2">Send Payment</h2>
+          <p class="muted">
+            MTN Number: <strong>0545948165</strong><br />
+            Name: <strong>Salifu Adams</strong> (MTN)
+          </p>
+          <p class="muted">After payment, submit your details below. Admin will approve and credit you.</p>
+
+          <form id="manualPayForm" class="form-grid">
+            <div class="field">
+              <label class="field-label">Username</label>
+              <input class="input" name="username" type="text" required />
+            </div>
+            <div class="field">
+              <label class="field-label">Email</label>
+              <input class="input" name="email" type="email" required />
+            </div>
+            <div class="field">
+              <label class="field-label">Amount</label>
+              <input class="input" name="amount" type="number" min="1" step="1" required />
+            </div>
+            <button class="btn btn-primary btn-full" type="submit">Submit for Approval</button>
+            <div id="manualPayError" class="alert alert-error" hidden></div>
+            <div id="manualPayOk" class="alert alert-ok" hidden></div>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <script src="assets/auth.js"></script>
+    <script src="assets/manual-payment.js"></script>
+  </body>
+</html>
+
