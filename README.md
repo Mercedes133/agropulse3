@@ -51,14 +51,49 @@ Quick local approach:
 - Users are credited **only** after verification (`/api/paystack/verify/:reference`).
 - The deposit page auto-verifies if Paystack returns with `?reference=...`.
 
-## Render Deployment (Backend + Static Frontend)
+## Go live on Render (step by step)
 
-**Option A (recommended):** Set **Root Directory** to `AgroPulse/server`, build `npm install`, start `npm start`.
+1. **Push this repo to GitHub** (if you have not already):
 
-**Option B:** Leave Root Directory at the **repo root**. A root `package.json` runs `postinstall` to install `server/` dependencies and `start` delegates to the server — no subfolder setting needed.
+   ```bash
+   cd AgroPulse
+   git add .
+   git commit -m "Deploy config"
+   git push origin main
+   ```
 
-1. Create a new Web Service from your GitHub repo.
-2. Set build command: `npm install`
-3. Set start command: `npm start`
-4. Add environment variables from `server/.env.example`.
+2. **MongoDB Atlas**
+   - Create a free cluster → **Database** → **Connect** → **Drivers** → copy `MONGODB_URI`.
+   - **Network Access** → add **`0.0.0.0/0`** (allow from anywhere) so Render can connect.
+
+3. **Render — New Web Service**
+   - Connect the **`agropulse3`** (or your) GitHub repo.
+   - **Root Directory:** leave **empty** (repo root has `package.json` + `postinstall` for `server/`).
+   - **Build Command:** `npm install`
+   - **Start Command:** `npm start`
+   - Optional: this repo includes **`render.yaml`** — you can use **Blueprint** / “Apply render.yaml” if Render offers it.
+
+4. **Environment variables** (Render → your service → **Environment**)
+
+   | Key | Required | Notes |
+   |-----|----------|--------|
+   | `MONGODB_URI` | Yes | Atlas connection string |
+   | `JWT_SECRET` | Yes | Long random string (secret) |
+   | `JWT_EXPIRES_IN` | No | Default `7d` if unset |
+   | `CLIENT_ORIGIN` | No | Your live URL, e.g. `https://agropulse.onrender.com` (helps CORS) |
+   | `PAYSTACK_*` | No | When you enable Paystack |
+
+5. **Deploy** → wait for “Live”. Then open:
+   - `https://YOUR-SERVICE.onrender.com/health` → should show `{"ok":true,...}`
+   - `https://YOUR-SERVICE.onrender.com/register.html` → sign up page
+
+**Free tier:** the service may **sleep** when idle; the first request after sleep can take ~30–60 seconds.
+
+## Render Deployment (details)
+
+**Option A:** **Root Directory** = `server`, build `npm install`, start `npm start`.
+
+**Option B:** **Root Directory** = repo root — root `package.json` runs `postinstall` to install `server/` and `start` runs the API.
+
+See also `server/.env.example` for local development.
 
