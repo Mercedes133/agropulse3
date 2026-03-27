@@ -1,0 +1,12 @@
+{
+  "name": "agropulse",
+  "private": true,
+  "description": "AgroPulse — root package so Render/GitHub deploy finds package.json when Root Directory is repo root",
+  "scripts": {
+    "postinstall": "npm install --prefix ./server",
+    "start": "npm start --prefix ./server"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -53,8 +53,12 @@ Quick local approach:
 
 ## Render Deployment (Backend + Static Frontend)
 
-1. Create a new Web Service from the `AgroPulse/server` folder.
+**Option A (recommended):** Set **Root Directory** to `AgroPulse/server`, build `npm install`, start `npm start`.
+
+**Option B:** Leave Root Directory at the **repo root**. A root `package.json` runs `postinstall` to install `server/` dependencies and `start` delegates to the server — no subfolder setting needed.
+
+1. Create a new Web Service from your GitHub repo.
 2. Set build command: `npm install`
 3. Set start command: `npm start`
-4. Add environment variables from `.env.example`.
+4. Add environment variables from `server/.env.example`.
 
